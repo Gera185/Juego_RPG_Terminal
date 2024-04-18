@@ -1,12 +1,14 @@
 from arma import Puño_Americano
-from hp_bar import BarraVida
+from hp_bar import HP_Bar, MP_Bar
 
 class Personaje:
 
-    def __init__(self, name: str, hp: int):
+    def __init__(self, name: str, hp: int, mp:int):
         self.name = name
         self.hp = hp
         self.hp_max = hp
+        self.mp = mp
+        self.mp_max = mp
 
         self.arma= Puño_Americano #Arma predeterminada.
 
@@ -18,11 +20,12 @@ class Personaje:
 
 
 class Heroe(Personaje):
-    def __init__(self, name: str, hp: int) -> None:
-        super().__init__(name=name, hp=hp)
-
+    def __init__(self, name: str, hp: int, mp: int) -> None:
+        super().__init__(name=name, hp=hp, mp=mp)
+        print("Hola")
         self.arma_defecto = self.arma
-        self.barra_vida = BarraVida(self, color="green")
+        self.barra_vida = HP_Bar(self, color="green")
+        self.barra_mp = MP_Bar(self)
 
     
     def equipo(self, arma) -> None:
@@ -36,7 +39,7 @@ class Heroe(Personaje):
 
 class Enemigo(Personaje):
     def __init__(self, name: str, hp: int, arma) -> None:
-        super().__init__(name=name, hp=hp)
+        super().__init__(name=name, hp=hp, mp=0)
 
         self.arma = arma
-        self.barra_vida = BarraVida(self, color="red")
+        self.barra_vida = HP_Bar(self, color="red")

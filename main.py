@@ -4,7 +4,7 @@ from arma import *
 
 # Creamos al Heroe y le desequipamos y equipamos otra arma.
 
-heroe = Heroe(name="Heroe", hp=100)
+heroe = Heroe(name="Heroe", hp=100, mp=50)
 heroe.soltar()
 heroe.equipo(Espada_de_Hierro)
 
@@ -18,6 +18,7 @@ while True:
     villano.lucha(heroe)
 
     heroe.barra_vida.pintar()
+    heroe.barra_mp.pintar()
     villano.barra_vida.pintar()
     input()
 
