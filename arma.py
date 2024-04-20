@@ -17,6 +17,6 @@ Arco_Corto = Arma(name="Arco corto",
                         valor=10)
 
 Puño_Americano = Arma(name="Puño americano",
-                      tipo="Contundente",
-                      atq=25,
-                      valor=10)
+                    tipo="Contundente",
+                    atq=25,
+                    valor=10)

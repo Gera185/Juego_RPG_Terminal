@@ -31,7 +31,9 @@ class Barra:
     def pintar(self) -> None:
         barra_restante = round(self.cantidad_actual / self.cantidad_max * self.longitud)
         barra_perdida = self.longitud - barra_restante
-        print(f"{self.nombre} del {self.entidad.name}: {self.cantidad_actual}/{self.cantidad_max}")
+        if (self.nombre=="HP"):
+            print(f"{self.nombre} del {self.entidad.name}: {self.cantidad_actual}/{self.cantidad_max}")
+
         print(f"{self.barrera}"
             f"{self.color if self.tiene_color else ''}"
             f"{barra_restante * self.simbolo_entero}"
@@ -43,7 +45,7 @@ class Barra:
 class HP_Bar(Barra):
     def __init__(self, entidad, nombre: str="HP", longitud: int = 20, tiene_color: bool = True, color: str = ""):
         super().__init__(entidad=entidad, nombre=nombre, longitud=longitud, tiene_color=tiene_color, color=color)
-        
+
         self.cantidad_actual = entidad.hp
         self.cantidad_max = entidad.hp_max
 
@@ -51,8 +53,11 @@ class HP_Bar(Barra):
         self.cantidad_actual = self.entidad.hp
 
 class MP_Bar(Barra):
-    def __init__(self, entidad, nombre: str="HP", longitud: int = 20, tiene_color: bool = True, color: str = "blue"):
+    def __init__(self, entidad, nombre: str="MP", longitud: int = 20, tiene_color: bool = True, color: str = "blue"):
         super().__init__(entidad=entidad, nombre=nombre, longitud=longitud, tiene_color=tiene_color, color=color)
         
         self.cantidad_actual = entidad.mp
         self.cantidad_max = entidad.mp_max
+
+    def actualizar(self) -> None:
+        self.cantidad_actual = self.entidad.mp

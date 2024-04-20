@@ -1,25 +1,17 @@
-import os
-from personaje import Heroe, Enemigo
-from arma import *
+from menu import *
+from config import *
 
-# Creamos al Heroe y le desequipamos y equipamos otra arma.
-
-heroe = Heroe(name="Heroe", hp=100, mp=50)
-heroe.soltar()
-heroe.equipo(Espada_de_Hierro)
-
-# Creamos al villano.
-villano = Enemigo(name="Villano", hp=100, arma=Puño_Americano)
-
+texto_Menu()
 while True:
-    os.system("cls")
 
-    heroe.lucha(villano)
-    villano.lucha(heroe)
+    opcion=(str(input()).lower())
+    if(opcion=="a" or opcion=="e" or opcion=="c") :
+        menuCombateArma(opcion)
+    elif(opcion=="m"):
+        menuMagia()
+        numHechizo=(int(input()))
+        if(numHechizo==1):
+            menuCombateMagia(heroe.hechizo1)
 
-    heroe.barra_vida.pintar()
-    heroe.barra_mp.pintar()
-    villano.barra_vida.pintar()
-    input()
-
+    
 
