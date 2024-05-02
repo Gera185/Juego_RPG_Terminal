@@ -1,6 +1,7 @@
 from arma import *
 from hp_bar import HP_Bar, MP_Bar
 from magia import *
+from equipo import *
 
 class Personaje:
 
@@ -11,7 +12,7 @@ class Personaje:
         self.mp = mp
         self.mp_max = mp
 
-        self.arma= Puño_Americano #Arma predeterminada.
+        self.arma = Puño_Americano #Arma predeterminada.
 
     def luchaArma(self, target) -> None:
         target.hp -= self.arma.atq
@@ -19,6 +20,7 @@ class Personaje:
         target.barra_vida.actualizar()
         print(f"{self.name} hizo {self.arma.atq} de daño a {target.name} con {self.arma.name}.")
 
+# ------------------------------------------------------------------------------------------------------
 
 class Heroe(Personaje):
     def __init__(self, name: str, hp: int, mp: int) -> None:
@@ -27,8 +29,14 @@ class Heroe(Personaje):
         self.barra_vida = HP_Bar(self, color="green")
         self.barra_mp = MP_Bar(self)
 
-        self.hechizo1 = bola_fuego
+        self.hechizos = [bola_fuego, carambano]
+        self.mochila = [pocion, elixir, pocion, elixir, pocion]
     
+    # TODO Hay que hacer esta función.
+    def mostrarEquipo(self) -> None:
+        for num, objeto in enumerate(self.mochila):
+            print(f"|\t[{num+1}] {objeto.nombre}\t\t\t\t\t|")
+
     def equipo(self, arma) -> None:
         self.arma = arma
         print(f"{self.name} se equipó un/a {self.arma.name}!")
@@ -38,7 +46,8 @@ class Heroe(Personaje):
         print(f"{self.name} solto el/la {self.arma.name}.")
 
     def mostrarHechizos(self)->None:
-        print(f"|\t[1] {self.hechizo1.nombre}\t\t\t\t|")
+        for hechizo in self.hechizos:
+            print(f"|\t[{self.hechizos.index(hechizo) + 1}] {hechizo.nombre}\t\t\t\t|")
 
     def luchaMagia(self, target, hechizo) -> None:
         target.hp -= hechizo.dmg
@@ -54,7 +63,7 @@ heroe = Heroe(name="Heroe", hp=100, mp=50)
 heroe.soltar()
 heroe.equipo(Espada_de_Hierro)
 
-
+# ------------------------------------------------------------------------------------------------------
 
 class Enemigo(Personaje):
     def __init__(self, name: str, hp: int, arma) -> None:

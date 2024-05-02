@@ -7,3 +7,4 @@ class Magia:
 
 
 bola_fuego=Magia("Bola de Fuego", "Fuego", 40, 25)
+carambano=Magia("Carambano    ", "Hielo", 35, 20)

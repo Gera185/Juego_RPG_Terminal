@@ -1,8 +1,25 @@
 from personaje import *
 from config import *
 
-def menuCombateArma(opcion: str) -> None:
+def menuEquipo() -> None:
+    print(BARRA)
+    heroe.mostrarEquipo()
+    print(BARRA)
 
+def menuEquipoUsado(numObjeto) -> None:
+    limpiar()
+    heroe.mochila[numObjeto-1].usar(heroe)
+    heroe.mochila.pop(numObjeto-1)
+    villano.luchaArma(heroe)
+
+    heroe.barra_vida.pintar()
+    heroe.barra_mp.pintar()
+    espacio()
+    villano.barra_vida.pintar()
+    
+    texto_Menu()
+
+def menuCombateArma(opcion: str) -> None:
     limpiar()
 
     heroe.luchaArma(villano)
@@ -15,6 +32,10 @@ def menuCombateArma(opcion: str) -> None:
     
     texto_Menu()
 
+def menuMagia() -> None:
+    print(BARRA)
+    heroe.mostrarHechizos()
+    print(BARRA)
 
 def menuCombateMagia(hechizo) -> None:
     limpiar()
@@ -28,11 +49,3 @@ def menuCombateMagia(hechizo) -> None:
     villano.barra_vida.pintar()
     
     texto_Menu()
-
-
-
-
-def menuMagia() -> None:
-    print(BARRA)
-    heroe.mostrarHechizos()
-    print(BARRA)
